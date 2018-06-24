@@ -1,0 +1,129 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<style type="text/css">
+.btn {
+/* Text color */
+      color: #0099CC; 
+/* Remove background color */
+      background: transparent; 
+/* Border thickness, line style, and color */
+      border: 2px solid #0099CC;
+/* Adds curve to border corners */
+      border-radius: 6px; 
+/* Make letters uppercase */
+      border: none;
+      color: white;
+      padding: 16px 32px;
+      text-align: center;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      -webkit-transition-duration: 0.4s; /* Safari */
+      transition-duration: 0.4s;
+      cursor: pointer;
+      text-decoration: none;
+      text-transform: uppercase;
+}
+.btn1 {
+      background-color: white; 
+      color: black; 
+      border: 2px solid #008CBA;
+}
+/*button on hover*/
+ .btn1:hover {
+      background-color: #008CBA;
+      color: white;
+ }
+}
+ </style>
+
+  <div class="jumbo">
+	<h2>Upload image of skin disease</h2>
+		<form method=post enctype=multipart/form-data>
+			<input type=file name=file  style="font-size : 12pt">
+
+
+ 			<font size="3">Choose task:</font>
+ 			{% if task == 2 %}
+  			<select id="selectedTask" name="tasks" class="selectpicker form-control" style="font-size : 12pt">
+
+    			<option value=1>Psoriasis/Eczema</option>
+				<option value=2 selected>Acne Vulgaris/Rosacea</option>
+				<option value=3>Mycosis Fungoides/Eczema</option>
+			
+  			</select> 
+
+  			{% elif task == 3 %}
+  			<select id="selectedTask" name="tasks" class="selectpicker form-control" style="font-size : 12pt">
+
+    			<option value=1>Psoriasis/Eczema</option>
+				<option value=2>Acne Vulgaris/Rosacea</option>
+				<option value=3 selected>Mycosis Fungoides/Eczema</option>
+			
+  			</select> 
+
+  			{% else %}
+  			<select id="selectedTask" name="tasks" class="selectpicker form-control" style="font-size : 12pt">
+
+    			<option value=1 selected>Psoriasis/Eczema</option>
+				<option value=2>Acne Vulgaris/Rosacea</option>
+				<option value=3>Mycosis Fungoides/Eczema</option>
+			
+  			</select> 
+
+  			{% endif %}
+  			<button class="btn1" style="font-size : 12pt">Upload</button>
+			<!-- <button type="submit" class="btn btn-default">Upload</button> -->
+		</form>
+  </div>
+
+
+
+
+
+<body>
+	<div, id="upload_image">
+	  	{% if filename %}
+	  	<center>
+
+	  	<div style="max-width: 1000px; border:1px black solid">
+  			<div style="height: auto; border:1px black solid">
+		  		<h3 style="text-align:left; padding-left:3em;"><b>Prediction: <font color="black">{{pred}}</font></b></h3>
+				<h3 style="text-align:left; padding-left:3em;"><b>Certainty: <font color="black">{{certainty}} %</font></b></h3>
+			</div>
+		</div>
+
+	  	<div style="max-width: 1000px; border:1px black solid">
+  			<div style="height: auto; border:1px black solid">
+  				<table width="100%">
+					<tr>
+		  				<td width="50%">
+		  					<p style="text-align:center;"><b><big>Original image</big></b></p>
+		  				</td>
+						<td width="50%">
+							<p style="text-align:center;"><b><big>Cropped image</big></b></p>
+		  				</td>
+		  			</tr>
+		  			<tr>
+						<td width="50%" align="center">
+							<img src="{{ url_for('send_file', filename=filename) }}" style="max-height:400px" alt=""><img/>
+						</td>
+		  				<td width="50%" align="center">
+			  				<img src="{{ url_for('send_file', filename=filename_zoom) }}" style="max-height:400px" alt=""><img/>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	  			
+  		</center>
+
+		{% else %}
+		<center>
+	  	<h1>No image</h1>
+	  	</center>
+		{% endif %}
+	</div>
+</body> 
+{% endblock %}
