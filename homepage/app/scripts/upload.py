@@ -135,7 +135,7 @@ def handle_file(request, folder):
         task = int(request.form.get("tasks", None))
 
         skin_diseases0 = ["Psoriasis", "Eczema"]
-        skin_diseases1 = ["Acne Vulgrais", "Rosacea"]
+        skin_diseases1 = ["Acne Vulgaris", "Rosacea"]
         skin_diseases2 = ["Mycosis Fungoides", "Eczema"]
 
         tf.reset_default_graph()
