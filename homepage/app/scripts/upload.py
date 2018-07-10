@@ -126,27 +126,8 @@ def handle_file(request, folder):
         img = crop_img(filepath)
         img_crop = Image.fromarray(img)
         img_crop.save(filepath + "_crop.jpg")
-        width, height = img_crop.size
-        
-        if width > 4000 or height > 4000:
-            res_width = int(width/4.0)
-            res_height = int(height/4.0)
-        elif width > 3000 or height > 3000:
-            res_width = int(width/3.0)
-            res_height = int(height/3.0)
-        elif width > 2000 or height > 2000:
-            res_width = int(width/2.0)
-            res_height = int(height/2.0)
-        else:
-            res_height = height
-            res_width = width 
-
-        min_side = min(res_height, res_width)
-
-        res_height = min_side
-        res_width = min_side      
-
-        image_res = img_crop.resize((res_width,res_height))
+    
+        image_res = img_crop.resize((250,250))
         img = np.array(image_res)
 
         height, width, n_channels = img.shape
