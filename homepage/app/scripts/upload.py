@@ -178,7 +178,7 @@ def handle_file(request, folder):
 
         saver = tf.train.Saver()
         with tf.Session() as sess:
-            saver.restore(sess, "./model/vgg16_model.ckpt")
+            saver.restore(sess, "./model/vgg16_crop.ckpt")
 
             img = img.reshape((1,height,width,n_channels))
             img = preprocess_input(img.astype(np.float32))
